@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CommonBtnStyle">
+        <item name="android:layout_width">@dimen/dimen250dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen10dp</item>
+        <item name="android:background">@drawable/drawable_bg_gradient_btn</item>
+    </style>
+
+    <style name="loginFragmentSignUpTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen10dp</item>
+<!--        <item name="android:textColor">@color/black</item>-->
+        <item name="android:textSize">@dimen/dimen25sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="loginFragmentLoginTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dimen30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CardViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/dimen10dp</item>
+        <item name="android:layout_marginStart">@dimen/dimen10dp</item>
+        <item name="android:layout_marginEnd">@dimen/dimen10dp</item>
+    </style>
+
+    <style name="layoutInsideCardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:layout_marginTop">@dimen/dimen10dp</item>
+        <item name="android:padding">@dimen/dimen10dp</item>
+        <item name="android:textSize">@dimen/dimen25sp</item>
+    </style>
+
+    <style name="SignUpFragmentSignUpTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen10dp</item>
+        <item name="android:layout_marginBottom">458dp</item>
+        <item name="android:textColor">#FF000000</item>
+        <item name="android:textSize">@dimen/dimen30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SignUpFragmentLoginTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen10dp</item>
+        <item name="android:textColor">#FF000000</item>
+        <item name="android:textSize">@dimen/dimen25sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="SignUpFragmentCardViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/_5sdp</item>
+        <item name="android:layout_marginStart">@dimen/_5sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_5sdp</item>
+    </style>
+
+    <style name="SignUpFragmentInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dimen25sp</item>
+    </style>
+
+    <style name="CalenderTV">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen10dp</item>
+        <item name="android:drawablePadding">@dimen/dimen10dp</item>
+        <item name="android:padding">@dimen/dimen24dp</item>
+        <item name="android:textSize">@dimen/dimen15sp</item>
+    </style>
+
+    <style name="SignUpButton">
+        <item name="android:layout_width">@dimen/dimen250dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen15sp</item>
+        <item name="android:background">@drawable/drawable_bg_gradient_btn</item>
+        <item name="backgroundTint">@null</item>
+
+
+    </style>
+
+</resources>

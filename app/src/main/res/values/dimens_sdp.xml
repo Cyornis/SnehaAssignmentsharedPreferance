@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen10dp">@dimen/_5sdp</dimen>
+    <dimen name="dimen30dp">@dimen/_15sdp</dimen>
+    <dimen name="dimen250dp">@dimen/_130sdp</dimen>
+    <dimen name="dimen20dp">@dimen/_10sdp</dimen>
+    <dimen name="dimen24dp">@dimen/_12sdp</dimen>
+    <dimen name="dimen9dp">@dimen/_5sdp</dimen>
+    <dimen name="dimen200dp">@dimen/_100sdp</dimen>
+    <dimen name="dimen264dp">@dimen/_132sdp</dimen>
+    <dimen name="dimen267dp">@dimen/_133sdp</dimen>
+</resources>
