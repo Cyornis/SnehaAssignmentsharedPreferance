@@ -20,7 +20,7 @@ abstract class UserDatabase : RoomDatabase(){
                 if (instance == null)
                       instance = Room.databaseBuilder(ctx.applicationContext,
                       UserDatabase::class.java,
-                      "User_Authorisation")
+                      "User_Authorisation.db")
                             .fallbackToDestructiveMigration()
                             .build()
 

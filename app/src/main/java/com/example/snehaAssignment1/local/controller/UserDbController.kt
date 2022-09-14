@@ -2,6 +2,7 @@ package com.example.snehaAssignment1.local.controller
 
 import android.app.Application
 import android.content.Context
+import android.provider.ContactsContract
 import com.example.snehaAssignment1.databases.UserDatabase
 import com.example.snehaAssignment1.interfaces.UserDao
 import com.example.snehaAssignment1.model.UserDetails
@@ -26,11 +27,23 @@ class UserDbController(private  val application: Context):CoroutineScope {
 
     suspend fun getData(userDetails: UserDetails){
         withContext(coroutineContext){
-            UserDatabase.getInstance(application)?.userDao()?.getAllData(userDetails.name,userDetails.password)
+            UserDatabase.getInstance(application)?.userDao()?.getAllData(userDetails.email,userDetails.password)
         }
     }
 
-    suspend fun deleteData(userDetails: UserDetails){
+    suspend fun checkUserExists(email:String):Boolean{
+      return  withContext(coroutineContext){
+          val userDetails =
+            UserDatabase.getInstance(application)?.userDao()?.checkUserExists(email)
+          userDetails?.let {
+              true
+          }?:kotlin.run{
+              false
+          }
+        }
+    }
+
+    suspend fun deleteUserData(userDetails: UserDetails){
         withContext(coroutineContext){
             UserDatabase.getInstance(application)?.userDao()?.deleteData(userDetails)
         }
@@ -38,6 +51,4 @@ class UserDbController(private  val application: Context):CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
-
-
 }

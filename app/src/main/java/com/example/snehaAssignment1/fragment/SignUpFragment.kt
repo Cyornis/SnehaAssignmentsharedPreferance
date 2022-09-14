@@ -14,9 +14,15 @@ import androidx.databinding.DataBindingUtil.inflate
 import androidx.fragment.app.viewModels
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentSignUpBinding
+import com.example.snehaAssignment1.model.UserDetails
 import com.example.snehaAssignment1.viewModel.SignUpViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.lang.reflect.Array.get
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 
 class SignUpFragment : Fragment() {
 
@@ -33,20 +39,19 @@ class SignUpFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-
-        binding.vm = signUpViewModel
-
         val date = Calendar.getInstance().time
+
         binding.tvDob.text = formatter.format(date)
-
+        binding.vm = signUpViewModel
         binding.tvDob.setOnClickListener {
-            fun clickDataPicker(view: View) {
-                val c = Calendar.getInstance()
 
+            fun clickDataPicker(view: View) {
+
+                val c = Calendar.getInstance()
                 val year = c.get(Calendar.YEAR)
                 val month = c.get(Calendar.MONTH)
                 val date = c.get(Calendar.DAY_OF_MONTH)
@@ -58,19 +63,11 @@ class SignUpFragment : Fragment() {
                         binding.tvDob.text = "$year - ${monthOfYear + 1} - $dayOfMonth"
 
                     }, year, month, date
-                )
+                 )
                 dpd.show()
-            }
-        }
-
-        binding.btnSignUp.setOnClickListener {
-            signUpViewModel.onSignUpClick()
-        }
-
-        binding.tvLoginTitle.setOnClickListener {
-            signUpViewModel.onLoginClick()
-        }
-
-      }
-
+             }
+          }
+       }
+     val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO
     }

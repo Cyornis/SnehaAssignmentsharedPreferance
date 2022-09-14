@@ -12,8 +12,11 @@ interface UserDao {
     @Update
     fun updateUser(userDetails: UserDetails)
 
-    @Query("SELECT * FROM User_Authorisation WHERE email LIKE :email AND password LIKE :password")
-    fun getAllData(email:String, password:String):UserDetails
+    @Query("SELECT * FROM User_Authorisation WHERE email LIKE :email AND password LIKE :password LIMIT 1")
+    fun getAllData(email:String, password:String):UserDetails?
+
+    @Query("SELECT * FROM User_Authorisation WHERE email LIKE :email LIMIT 1")
+    fun checkUserExists(email:String):UserDetails?
 
     @Delete
     fun deleteData(userDetails: UserDetails)

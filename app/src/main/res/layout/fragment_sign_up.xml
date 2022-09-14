@@ -16,7 +16,6 @@
 
         <TextView
             android:id="@+id/tv_signUp_title"
-            android:onClick="@{()->vm.onSignUpClick()}"
             android:text="@string/tv_signUp_title"
             app:layout_constraintBottom_toTopOf="@id/cardView"
             app:layout_constraintStart_toStartOf="parent"
