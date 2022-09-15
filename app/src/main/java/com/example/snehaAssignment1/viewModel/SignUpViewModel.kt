@@ -27,39 +27,66 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
-private val defaultScope = CoroutineScope(Dispatchers.Default)
+    private val defaultScope = CoroutineScope(Dispatchers.Default)
 
-         private val repo = SignUpRepo(app)  //connection between view model and repository
+    private val repo = SignUpRepo(app)  //connection between view model and repository
+    private lateinit var userDetails: UserDetails
+    var userName = ""
+    var emailId = ""
+    var mobileNumber = ""
+    var password = ""
 
-//         val observer = Observer<UserDetails>()
-         fun onSignUpClick() {
+    fun onSignUpClick() {
 
-            defaultScope.launch {
-                val userDetails = UserDetails(1,"Anjali","anjali123@gmail.com","123","1234567897","13-01-1998")
-                //if - else used to check user is akready exist or not
-                val exists = repo.checkUserExists(userDetails.email)
-               if (exists){
-                   withContext(Dispatchers.Main){
-                       Log.e("Anjali","User already exists")
-                   }
-               }
-                else{
-                   repo.insert(userDetails)
-               }
+        defaultScope.launch {
+//two way binding is used
+            if (userName.isBlank()) {
+                withContext(Dispatchers.Main) {
+                    Log.e("Anjali", "User Name should not be blank")
+                }
             }
-         }
+            else {
+                if (emailId.isBlank()) {
+                    withContext(Dispatchers.Main) {
+                        Log.e("Anjali", "EmailId should not be blank")
+                    }
+                } else if (password.isBlank()) {
+                    withContext(Dispatchers.Main) {
+                        Log.e("Anjali", "Password should not be blank")
+                    }
+                } else if (mobileNumber.isBlank()) {
+                    withContext(Dispatchers.Main) {
+                        Log.e("Anjali", "Mobile Number should not be blank")
+                    }
+                }
+                else {
+                    val userDetails =
+                        UserDetails(1, userName, emailId, password, mobileNumber, "13-01-1998")
+                    val exists = repo.checkUserExists(userDetails.email)
 
-        fun onLoginClick() {
-            onCleared()
+                    if (exists) {
+                        withContext(Dispatchers.Main) {
+                            Log.e("Anjali", "User already exists")
+                        }
+                    } else {
+                        repo.insert(userDetails)
+                    }
 
+                }
+            }
         }
+    }
 
-       fun  onDOBClick(){
+    fun onLoginClick() {
+        onCleared()
+    }
 
-       }
+    fun onDOBClick() {
 
+    }
 
 }
+
 
 
 

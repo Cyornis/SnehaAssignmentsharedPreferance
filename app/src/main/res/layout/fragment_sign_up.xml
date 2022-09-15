@@ -52,12 +52,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/et_email_id_signUp_layout"
                     style="@style/SignUpFragmentInputLayout">
-
+<!--Two way data binding is used here (@={vm.userName})-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_name_signUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
+                        android:text="@={vm.userName}"
                         android:background="@android:color/transparent"
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="@dimen/_5sdp"
@@ -81,6 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen10dp"
                         android:background="@android:color/transparent"
+                        android:text="@={vm.emailId}"
                         android:drawableStart="@drawable/ic_baseline_email_24"
                         android:drawablePadding="@dimen/dimen10dp"
                         android:hint="@string/hint_emailId_signUp"
@@ -103,6 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen10dp"
                         android:background="@android:color/transparent"
+                        android:text="@={vm.mobileNumber}"
                         android:drawableStart="@drawable/ic_baseline_phone_24"
                         android:drawablePadding="@dimen/dimen10dp"
                         android:hint="@string/hint_mobile_signUp"
@@ -124,6 +127,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen10dp"
+                        android:text="@={vm.password}"
                         android:background="@android:color/transparent"
                         android:drawableStart="@drawable/ic_baseline_lock_24"
                         android:drawablePadding="@dimen/dimen10dp"
