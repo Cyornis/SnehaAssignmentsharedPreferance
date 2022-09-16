@@ -1,25 +1,20 @@
 package com.example.snehaAssignment1.fragment
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.inflate
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentSignUpBinding
-import com.example.snehaAssignment1.model.UserDetails
+import com.example.snehaAssignment1.model.ClickEvent
 import com.example.snehaAssignment1.viewModel.SignUpViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.lang.reflect.Array.get
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.coroutines.CoroutineContext
@@ -28,6 +23,37 @@ class SignUpFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpBinding
     private val signUpViewModel: SignUpViewModel by viewModels()
+
+    init {
+
+        lifecycleScope.launchWhenCreated {
+            signUpViewModel.signUpFlow.collect {
+
+                when (it.clickEvent) {
+                    ClickEvent.Nothing -> {
+                        if (it.error) {
+                            showToast(it.message ?: "")
+                        }
+                    }
+                    ClickEvent.LoginTextClick -> {
+                       openLoginFragment()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun openLoginFragment() {
+        //creating Login Fragment
+        val loginFragment = LoginFragment()
+        val loginFragmentObject = activity?.supportFragmentManager?.beginTransaction()
+        loginFragmentObject?.replace(R.id.fragment_container_view,loginFragment)
+        loginFragmentObject?.commit()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +65,7 @@ class SignUpFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -63,11 +89,12 @@ class SignUpFragment : Fragment() {
                         binding.tvDob.text = "$year - ${monthOfYear + 1} - $dayOfMonth"
 
                     }, year, month, date
-                 )
+                )
                 dpd.show()
-             }
-          }
-       }
-     val coroutineContext: CoroutineContext
-        get() = Dispatchers.IO
+            }
+        }
     }
+
+    val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO
+}

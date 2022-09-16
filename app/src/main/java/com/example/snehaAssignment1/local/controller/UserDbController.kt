@@ -1,17 +1,14 @@
 package com.example.snehaAssignment1.local.controller
 
-import android.app.Application
 import android.content.Context
-import android.provider.ContactsContract
 import com.example.snehaAssignment1.databases.UserDatabase
-import com.example.snehaAssignment1.interfaces.UserDao
 import com.example.snehaAssignment1.model.UserDetails
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
-class UserDbController(private  val application: Context):CoroutineScope {
+class UserDbController(private val application: Context):CoroutineScope {
 
    suspend fun insertUserData(userDetails: UserDetails){
        withContext(coroutineContext){
@@ -40,6 +37,18 @@ class UserDbController(private  val application: Context):CoroutineScope {
           }?:kotlin.run{
               false
           }
+        }
+    }
+
+    suspend fun checkUserExistsLogin(email:String,password:String):Boolean{
+        return  withContext(coroutineContext){
+            val userDetails =
+                UserDatabase.getInstance(application)?.userDao()?.checkUserExistsLogin(email,password)
+            userDetails?.let {
+                true
+            }?:kotlin.run{
+                false
+            }
         }
     }
 

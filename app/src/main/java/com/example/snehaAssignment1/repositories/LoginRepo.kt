@@ -7,5 +7,6 @@ import com.example.snehaAssignment1.remote.controller.NetworkController
 class LoginRepo(private val application: Application) {
 
     private val dbController =  UserDbController(application)
-    private val networkController =  NetworkController(application)
+   // private val networkController =  NetworkController(application)
+    suspend fun checkUserExistsLogin(email:String,password:String) = dbController.checkUserExistsLogin(email,password) /////smart casting
 }
