@@ -100,7 +100,7 @@
                     <Button
                         android:id="@+id/btn_login"
                         android:text="@string/btn_login"
-                        android:onClick="@{()->vm.onLoginClick()}"
+                        android:onClick="@{()->vm.onLoginBtnClick()}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,9 @@
 package com.example.snehaAssignment1.fragment
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceFragment
+import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +18,14 @@ import com.example.snehaAssignment1.databinding.FragmentLoginBinding
 import com.example.snehaAssignment1.model.ClickEvent
 import com.example.snehaAssignment1.viewModel.LoginViewModel
 import com.example.snehaAssignment1.viewModel.SignUpViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlin.coroutines.CoroutineContext
 
 class LoginFragment : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
+    private lateinit var sharedPreferences: SharedPreferences
 
     init {
 
@@ -32,9 +38,20 @@ class LoginFragment : Fragment() {
                             showToast(it.message ?: "")
                         }
                     }
+                    ClickEvent.SignUpTextClick -> {
+                        openSignUpFragment()
+                    }
                 }
             }
         }
+    }
+
+    private fun openSignUpFragment() {
+        val signUpFragment = SignUpFragment()
+        val signUpFragmentObject = requireActivity().supportFragmentManager.beginTransaction()
+        signUpFragmentObject.add(R.id.fragment_container_view,signUpFragment)
+        signUpFragmentObject.addToBackStack(LoginFragment::class.java.simpleName)
+        signUpFragmentObject.commit()
     }
 
     private fun showToast(message: String) {
@@ -46,15 +63,21 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-        binding.btnLogin.setOnClickListener {
-        }
-        // Inflate the layout for this fragment
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = loginViewModel
+
+        binding.btnLogin.setOnClickListener {
+
+            loginViewModel.onLoginBtnClick()
+            sharedPreferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        }
     }
+    val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO
 }

@@ -25,6 +25,12 @@ class MainActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) { }
 
             override fun onFinish() {
+                ///login or signUp fragment open or home activity
+                //if shared preferance has value of email and password both
+                //then intent to open home screen activity
+                //else
+                //intent to open loginOrSignUp activity
+
                      Intent(this@MainActivity, LoginOrSignUpActivity::class.java).also {
                         startActivity(it)
                         finish()

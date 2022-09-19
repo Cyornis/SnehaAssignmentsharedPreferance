@@ -1,13 +1,16 @@
 package com.example.snehaAssignment1.viewModel
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.model.ClickEvent
 import com.example.snehaAssignment1.model.LoginEventModel
 import com.example.snehaAssignment1.model.SignUpEventModel
 import com.example.snehaAssignment1.model.UserDetails
 import com.example.snehaAssignment1.repositories.LoginRepo
+import com.example.snehaAssignment1.repositories.SignUpRepo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,49 +18,62 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
+class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
 
     private val defaultScope = CoroutineScope(Dispatchers.Default)
     private val loginEvent = MutableSharedFlow<LoginEventModel>()
+    private val repo = LoginRepo(app)  //connection between view model and repository
+    private lateinit var userDetails: UserDetails
+
     val loginFlow = loginEvent.asSharedFlow()
-    lateinit var userDetails: UserDetails
-    private val repo=LoginRepo(application)
+
     private val emailId = ""
     private val password = ""
+
+    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.+[a-z]+"
+    private val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%!\\-_?&])(?=\\S+\$).{8,}"
 
 
     fun onLoginClick() {
         defaultScope.launch {
 
-            if (emailId.isBlank()) {
-                withContext(Dispatchers.Main) {
-//                        Log.e("Anjali", "EmailId should not be blank")
-                    val loginEventModel = LoginEventModel("EmailId should not be blank")
-                    loginEvent.emit(loginEventModel)
-
-                }
-            }
-            else if(password.isBlank()){
-                withContext(Dispatchers.Main){
-                    val loginEventModel = LoginEventModel("Password should not be blank")
-                    loginEvent.emit(loginEventModel)
-                }
-            }
-            else{
-                val exists = repo.checkUserExistsLogin(userDetails.email,userDetails.password)
-                if (exists) {
+            when {
+                emailId.isBlank() -> {
                     withContext(Dispatchers.Main) {
-//                            Log.e("Anjali", "User already exists")
-                        val loginModel = LoginEventModel("User already exists")
-                        loginEvent.emit(loginModel)
+                        val loginEventModel = LoginEventModel(app.getString(R.string.alert_email_should_not_be_blank))
+                        loginEvent.emit(loginEventModel)
                     }
                 }
-
-                else{
+                !emailId.matches(emailPattern.toRegex()) -> {
                     withContext(Dispatchers.Main) {
-//                            Log.e("Anjali", "User already exists")
-                        val loginModel = LoginEventModel("Require SignIn")
-                        loginEvent.emit(loginModel)
+                        val loginEventModel = LoginEventModel(app.getString(R.string.alert_enter_valid_emailId))
+                        loginEvent.emit(loginEventModel)
+                    }
+                }
+                password.isBlank() -> {
+                    withContext(Dispatchers.Main){
+                        val loginEventModel = LoginEventModel(app.getString(R.string.alert_password_should_not_be_blank))
+                        loginEvent.emit(loginEventModel)
+                    }
+                }
+                !password.matches(passwordPattern.toRegex()) -> {
+                    withContext(Dispatchers.Main) {
+                        val loginEventModel = LoginEventModel(app.getString(R.string.alert_enter_valid_password))
+                        loginEvent.emit(loginEventModel)
+                    }
+                }
+                else -> {
+                    val exists = repo.checkUserExistsLogin(userDetails.email,userDetails.password)
+                    if (exists) {
+                        withContext(Dispatchers.Main) {
+                            val loginModel = LoginEventModel(app.getString(R.string.alert_user_already_exist))
+                            loginEvent.emit(loginModel)
+                        }
+                    } else{
+                        withContext(Dispatchers.Main) {
+                            val loginModel = LoginEventModel(app.getString(R.string.alert_email_and_password_do_not_match))
+                            loginEvent.emit(loginModel)
+                        }
                     }
                 }
             }
@@ -71,5 +87,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             loginEvent.emit(loginModel)
 
         }
+    }
+
+    fun onLoginBtnClick(){
+       Log.d("ANJALI","login button clicked")
+    //           using shared preference
     }
 }
