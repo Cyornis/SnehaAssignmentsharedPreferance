@@ -48,34 +48,35 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/et_name_signUp_layout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/SignUpFragmentInputLayout"
                     app:layout_constraintBottom_toTopOf="@+id/et_email_id_signUp_layout"
-                    style="@style/SignUpFragmentInputLayout">
-<!--Two way data binding is used here (@={vm.userName})-->
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <!--Two way data binding is used here (@={vm.userName})-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_name_signUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:text="@={vm.userName}"
                         android:background="@android:color/transparent"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGGHIJKLMNOPQRSTUVWXYZ -"
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="@dimen/_5sdp"
                         android:hint="@string/name_signUp"
                         android:inputType="textPersonName"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:text="@={vm.userName}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/et_email_id_signUp_layout"
                     style="@style/SignUpFragmentInputLayout"
-                    app:layout_constraintTop_toBottomOf="@id/et_name_signUp_layout"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/et_mobile_signUp_layout"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/et_mobile_signUp_layout">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_name_signUp_layout">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_email_id_signUp"
@@ -83,22 +84,22 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen10dp"
                         android:background="@android:color/transparent"
-                        android:text="@={vm.emailId}"
                         android:drawableStart="@drawable/ic_baseline_email_24"
                         android:drawablePadding="@dimen/dimen10dp"
                         android:hint="@string/hint_emailId_signUp"
                         android:inputType="textEmailAddress"
-                        android:maxLines="1"/>
+                        android:maxLines="1"
+                        android:text="@={vm.emailId}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/et_mobile_signUp_layout"
                     style="@style/SignUpFragmentInputLayout"
-                    app:layout_constraintTop_toBottomOf="@id/et_email_id_signUp_layout"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/et_mobile_password_signUp_layout"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/et_mobile_password_signUp_layout">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_email_id_signUp_layout">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_mobile_signUp"
@@ -106,57 +107,67 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen10dp"
                         android:background="@android:color/transparent"
-                        android:text="@={vm.mobileNumber}"
                         android:drawableStart="@drawable/ic_baseline_phone_24"
                         android:drawablePadding="@dimen/dimen10dp"
                         android:hint="@string/hint_mobile_signUp"
                         android:inputType="number"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:text="@={vm.mobileNumber}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/et_mobile_password_signUp_layout"
                     style="@style/SignUpFragmentInputLayout"
-                    app:layout_constraintTop_toBottomOf="@id/et_mobile_signUp_layout"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_dob"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_dob">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_mobile_signUp_layout">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_password_signUp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen10dp"
-                        android:text="@={vm.password}"
                         android:background="@android:color/transparent"
                         android:drawableStart="@drawable/ic_baseline_lock_24"
                         android:drawablePadding="@dimen/dimen10dp"
                         android:hint="@string/hint_password_signUp"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:text="@={vm.password}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_dob"
+                    style="@style/CalenderTV"
                     android:onClick="@{()->vm.onDOBClick()}"
                     app:drawableStartCompat="@drawable/ic_baseline_calendar_month_24"
-                    app:layout_constraintTop_toBottomOf="@+id/et_mobile_password_signUp_layout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/btn_signUp"
-                    style="@style/CalenderTV" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_mobile_password_signUp_layout" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_signUp"
+                    style="@style/SignUpButton"
                     android:onClick="@{()->vm.onSignUpClick()}"
                     android:text="@string/btn_signUp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_dob"
-                    app:layout_constraintVertical_bias="0.5"
-                    style="@style/SignUpButton" />
+                    app:layout_constraintVertical_bias="0.5" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="24dp"
+                    android:onClick="@{()->vm.onBackClick()}"
+                    android:text="Back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_dob" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -93,6 +93,7 @@ class SignUpFragment : Fragment() {
                 dpd.show()
             }
         }
+
     }
 
     val coroutineContext: CoroutineContext

@@ -4,7 +4,8 @@ enum class ClickEvent {
     LoginTextClick,
     SignUpTextClick,
     SignUpClick,
-    LoginUpClick,
-    DoBTextClick,
-    Nothing
+    LoginClick,
+    DoBTextClick,  ///use this
+    Nothing,
+    LogOutBtn
 }

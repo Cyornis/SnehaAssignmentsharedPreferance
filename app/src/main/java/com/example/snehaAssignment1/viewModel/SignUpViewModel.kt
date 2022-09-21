@@ -1,6 +1,9 @@
 package com.example.snehaAssignment1.viewModel
 
 import android.app.Application
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.model.ClickEvent
@@ -20,16 +23,15 @@ class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
     private val repo = SignUpRepo(app)  //connection between view model and repository
     private lateinit var userDetails: UserDetails
 
-    val signUpFlow =
-        signUpEvent.asSharedFlow()   //signUpFlow is used to provide data from SignUpViewModel to SignUpFragment
+    val signUpFlow = signUpEvent.asSharedFlow()   //signUpFlow is used to provide data from SignUpViewModel to SignUpFragment
     var userName = ""
     var emailId = ""
     var mobileNumber = ""
     var password = ""
 
-    private val usernamePattern = "^[A-Za-z][A-Za-z0-9_]{7,29}$"
+
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.+[a-z]+"
-    private val mobilePattern = "/^(\\+\\d{1,3}[- ]?)?\\d{10}\$/"
+//   private val mobilePattern = "(\\+\\d( )?)?([-\\( ]\\d{3}[-\\) ])( )?\\d{3}-\\d{4}"
     private val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%!\\-_?&])(?=\\S+\$).{8,}"
 
     fun onSignUpClick() {
@@ -43,13 +45,13 @@ class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
                         signUpEvent.emit(signUpEventModel)  // here message is given to fragment
                     }
                 }
-                !userName.matches(usernamePattern.toRegex()) -> {
-                    withContext(Dispatchers.Main) {
-                        val signUpEventModel =
-                            SignUpEventModel(app.getString(R.string.alert_username_should_contain_uppercase_lowercase_number))
-                        signUpEvent.emit(signUpEventModel)
-                    }
-                }
+//                !userName.matches(usernamePattern.toRegex()) -> {
+//                    withContext(Dispatchers.Main) {
+//                        val signUpEventModel =
+//                            SignUpEventModel(app.getString(R.string.alert_username_should_contain_uppercase_lowercase_number))
+//                        signUpEvent.emit(signUpEventModel)
+//                    }
+//                }
                 emailId.isBlank() -> {
                     withContext(Dispatchers.Main) {
                         val signUpEventModel = SignUpEventModel(app.getString(R.string.alert_email_should_not_be_blank))
@@ -68,12 +70,12 @@ class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
                         signUpEvent.emit(signUpEventModel)
                     }
                 }
-                !mobileNumber.matches(mobilePattern.toRegex()) -> {
-                    withContext(Dispatchers.Main) {
-                        val signUpEventModel = SignUpEventModel(app.getString(R.string.alert_Enter_valid_mobile_number))
-                        signUpEvent.emit(signUpEventModel)
-                    }
-                }
+//                !mobileNumber.matches(mobilePattern.toRegex()) -> {
+//                    withContext(Dispatchers.Main) {
+//                        val signUpEventModel = SignUpEventModel(app.getString(R.string.alert_Enter_valid_mobile_number))
+//                        signUpEvent.emit(signUpEventModel)
+//                    }
+//                }
                 password.isBlank() -> {
                     withContext(Dispatchers.Main) {
                         val signUpEventModel = SignUpEventModel(app.getString(R.string.alert_password_should_not_be_blank))
@@ -88,16 +90,18 @@ class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
                 }
                 else -> {
                     val userDetails =
-                        UserDetails(1, userName, emailId, password, mobileNumber, "13-01-1998")
+                        UserDetails( name=userName, email =emailId, password = password, phone_number = mobileNumber, dob = "13-01-1998")
                     val exists = repo.checkUserExists(userDetails.email)
 
                     if (exists) {
                         withContext(Dispatchers.Main) {
                             val signUpEventModel = SignUpEventModel(app.getString(R.string.alert_user_already_exist))
                             signUpEvent.emit(signUpEventModel)
+
                         }
                     } else {
                         repo.insert(userDetails)
+                        Log.d("SIGNuP","SUCCESSFUL SIGN UP")
                     }
                 }
             }
@@ -117,6 +121,10 @@ class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
     }
 
     fun onDOBClick() {
+//emit     (just like onLoginClick())
+    }
 
+    fun onBackClick(){
+        onLoginClick()
     }
 }

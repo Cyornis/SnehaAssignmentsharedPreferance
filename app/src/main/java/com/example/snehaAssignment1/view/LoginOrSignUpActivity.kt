@@ -20,10 +20,9 @@ class LoginOrSignUpActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acivity_loginorsignup)
 
-        //..............create login and signUp fragments.............//
-openFragment()
+        openFragment()
+//        onBackPressedDispatcher.onBackPressed()
     }
-
     private fun openFragment() {
         val loginFragment = LoginFragment()
         val loginFragmentObject = supportFragmentManager.beginTransaction()

@@ -10,7 +10,7 @@ data class UserDetails(
 
     @ColumnInfo
     @PrimaryKey(autoGenerate = true)
-    var id: Int,
+    var id: Int=0,
 
     @ColumnInfo
     var name: String,
