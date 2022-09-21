@@ -27,18 +27,19 @@ class LogOutFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             homeViewModel.signUpFlow.collect {
 
-                when (it.clickEvent) {
-                    ClickEvent.Nothing -> {
-                        if (it.error) {
-                            Toast.makeText(requireContext(),"Toast",Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                   ClickEvent.LogOutBtn -> {
-                       Intent(requireActivity(),LoginOrSignUpActivity::class.java).also {
+               when (it.clickEvent) {
+//                    ClickEvent.Nothing -> {
+//                        if (it.error) {
+//                            Toast.makeText(requireContext(),"Toast",Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
+                   ClickEvent.LoginTextClick -> {
+                       Intent(requireActivity(), LoginOrSignUpActivity::class.java).also {
                            startActivity(it)
+                           requireActivity().finish()
                        }
                    }
-                }
+               }
             }
         }
     }

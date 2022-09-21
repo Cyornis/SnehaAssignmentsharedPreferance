@@ -97,7 +97,6 @@ class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
                         withContext(Dispatchers.Main) {
                             val signUpEventModel = SignUpEventModel(app.getString(R.string.alert_user_already_exist))
                             signUpEvent.emit(signUpEventModel)
-
                         }
                     } else {
                         repo.insert(userDetails)

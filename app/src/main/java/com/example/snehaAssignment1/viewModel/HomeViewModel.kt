@@ -34,7 +34,7 @@ class HomeViewModel(private val app: Application) : AndroidViewModel(app) {
 
     private fun backToLoginOrSignUpActivity(){
         defaultScope.launch {
-            val signUpEventModel = SignUpEventModel(clickEvent = ClickEvent.LoginClick)
+            val signUpEventModel = SignUpEventModel(clickEvent = ClickEvent.LoginTextClick)
             signUpEvent.emit(signUpEventModel)
         }
     }
