@@ -38,6 +38,9 @@ class SignUpFragment : Fragment() {
                     ClickEvent.LoginTextClick -> {
                        openLoginFragment()
                     }
+                    ClickEvent.DoBTextClick -> {
+                        view?.let { it1 -> clickDataPicker(it1) }
+                    }
                 }
             }
         }
@@ -49,6 +52,24 @@ class SignUpFragment : Fragment() {
         val loginFragmentObject = activity?.supportFragmentManager?.beginTransaction()
         loginFragmentObject?.replace(R.id.fragment_container_view,loginFragment)
         loginFragmentObject?.commit()
+    }
+
+    fun clickDataPicker(view: View) {
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val date = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(
+            requireActivity(),
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                binding.tvDob.text = "$year - ${monthOfYear + 1} - $dayOfMonth"
+
+            }, year, month, date
+        )
+        dpd.show()
     }
 
     private fun showToast(message: String) {
@@ -75,23 +96,7 @@ class SignUpFragment : Fragment() {
         binding.vm = signUpViewModel
         binding.tvDob.setOnClickListener {
 
-            fun clickDataPicker(view: View) {
 
-                val c = Calendar.getInstance()
-                val year = c.get(Calendar.YEAR)
-                val month = c.get(Calendar.MONTH)
-                val date = c.get(Calendar.DAY_OF_MONTH)
-
-                val dpd = DatePickerDialog(
-                    requireActivity(),
-                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-
-                        binding.tvDob.text = "$year - ${monthOfYear + 1} - $dayOfMonth"
-
-                    }, year, month, date
-                )
-                dpd.show()
-            }
         }
 
     }

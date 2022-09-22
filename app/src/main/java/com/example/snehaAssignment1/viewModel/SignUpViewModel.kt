@@ -100,6 +100,7 @@ class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
                         }
                     } else {
                         repo.insert(userDetails)
+                        onBackClick()
                         Log.d("SIGNuP","SUCCESSFUL SIGN UP")
                     }
                 }
@@ -121,6 +122,10 @@ class SignUpViewModel(private val app: Application) : AndroidViewModel(app) {
 
     fun onDOBClick() {
 //emit     (just like onLoginClick())
+        defaultScope.launch {
+            val signUpEventModel = SignUpEventModel(clickEvent = ClickEvent.DoBTextClick)
+            signUpEvent.emit(signUpEventModel)
+        }
     }
 
     fun onBackClick(){
