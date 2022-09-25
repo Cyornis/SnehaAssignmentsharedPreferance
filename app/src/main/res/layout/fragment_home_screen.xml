@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="vm"
+            type="com.example.snehaAssignment1.viewModel.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="">
+
+
+        <!--THREE BUTTONS
+                     1 btn->onClick on userListBtn->UserListFragment open ->show only name,email,phone number
+                                                        |
+                                                        |these two btns are insie the UserDetailsFragment
+                                                        |
+                      1 btn->onClick on usertoDosBtn->UserToDosFragment open -> title and background colour for completed- true- green and completed - false -red
+                      2 btn-> onClick On userPostbtn-> UserPostFragment open ->  title and body (description)
+
+         -->
+
+        <TextView
+            android:id="@+id/homeActivityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="649dp"
+            android:text="@string/home_page_title"
+            android:textSize="@dimen/_25ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.059" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_userList"
+            style="@style/CommonBtnStyle"
+            android:onClick="@{()->vm.onUserListBtnClick()}"
+            android:text="User List Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeActivityTitle"
+            app:layout_constraintVertical_bias="0.589" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_logOut"
+            style="@style/CommonBtnStyle"
+            android:onClick="@{()->vm.onLogOutClickBtn()}"
+            android:text="LogOut"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_userList"
+            app:layout_constraintVertical_bias="0.589" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

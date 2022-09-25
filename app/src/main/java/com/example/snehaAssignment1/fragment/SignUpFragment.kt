@@ -69,6 +69,7 @@ class SignUpFragment : Fragment() {
 
             }, year, month, date
         )
+        dpd.datePicker.maxDate = Calendar.getInstance().timeInMillis
         dpd.show()
     }
 

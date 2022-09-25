@@ -6,22 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.snehaAssignment1.R
-import com.example.snehaAssignment1.databinding.FragmentLogOutBinding
+import com.example.snehaAssignment1.databinding.FragmentHomeScreenBinding
 import com.example.snehaAssignment1.model.ClickEvent
 import com.example.snehaAssignment1.view.LoginOrSignUpActivity
 import com.example.snehaAssignment1.viewModel.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
-class LogOutFragment : Fragment() {
+class HomeScreenFragment : Fragment() {
 
     private val homeViewModel : HomeViewModel by viewModels()
-    private lateinit var binding : FragmentLogOutBinding
+    private lateinit var binding : FragmentHomeScreenBinding
 
     init {
         lifecycleScope.launchWhenCreated {
@@ -39,9 +38,21 @@ class LogOutFragment : Fragment() {
                            requireActivity().finish()
                        }
                    }
+                   ClickEvent.UserListClick -> {
+                       openUserListFragment()
+                   }
                }
             }
         }
+    }
+
+    private fun openUserListFragment() {
+        val userListFragment = UserListFragment()
+        val userListFragmentObject = requireActivity().supportFragmentManager.beginTransaction()
+        userListFragmentObject.replace(R.id.fragment_container_view,userListFragment)
+       // userListFragmentObject.addToBackStack(LoginFragment::class.java.simpleName)
+        userListFragmentObject.commit()
+
     }
 
     override fun onCreateView(
@@ -49,7 +60,7 @@ class LogOutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_log_out, container, false)
+        binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_home_screen, container, false)
         return binding.root
     }
 

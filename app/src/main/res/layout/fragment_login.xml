@@ -76,10 +76,13 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+
                         android:id="@+id/et_password_layout"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toTopOf="@+id/btn_login"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/teal_700"
                         app:layout_constraintTop_toBottomOf="@+id/et_email_id_layout"
                         style="@style/layoutInsideCardView">
 
