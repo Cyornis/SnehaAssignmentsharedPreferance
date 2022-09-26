@@ -1,10 +1,12 @@
 package com.example.snehaAssignment1.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -19,22 +21,12 @@ class UserListFragment : Fragment() {
     private lateinit var binding  : FragmentUserListBinding
 
     init {
+        lifecycleScope.launchWhenCreated {
+           userListViewModel.userListFlow.collect{
+               Toast.makeText(requireContext(),"Anjali",Toast.LENGTH_SHORT).show()
 
-         lifecycleScope.launchWhenCreated {
-             userListViewModel.signUpFlow.collect{
-
-                 when(it.clickEvent){
-                     ClickEvent.UserListClick ->{
-                         openUserListFragment()
-                     }
-                 }
-             }
-         }
-
-         }
-
-    private fun openUserListFragment() {
-
+           }
+        }
     }
 
     override fun onCreateView(

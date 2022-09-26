@@ -7,15 +7,16 @@
         <variable
             name="vm"
             type="com.example.snehaAssignment1.viewModel.HomeViewModel" />
-        <variable
-            name="ulvm"
-            type="com.example.snehaAssignment1.viewModel.UserListViewModel" />
+<!--        <variable-->
+<!--            name="ulvm"-->
+<!--            type="com.example.snehaAssignment1.viewModel.UserListViewModel" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="">
+        android:background="@color/white"
+        tools:context=".fragment.HomeScreenFragment">
 
 
         <!--THREE BUTTONS

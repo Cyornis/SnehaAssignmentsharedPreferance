@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -24,7 +25,7 @@ class HomeScreenFragment : Fragment() {
 
     init {
         lifecycleScope.launchWhenCreated {
-            homeViewModel.signUpFlow.collect {
+            homeViewModel.userListFlow.collect {
 
                when (it.clickEvent) {
 //                    ClickEvent.Nothing -> {
@@ -32,12 +33,12 @@ class HomeScreenFragment : Fragment() {
 //                            Toast.makeText(requireContext(),"Toast",Toast.LENGTH_SHORT).show()
 //                        }
 //                    }
-                   ClickEvent.LoginTextClick -> {
-                       Intent(requireActivity(), LoginOrSignUpActivity::class.java).also {
-                           startActivity(it)
-                           requireActivity().finish()
-                       }
-                   }
+//                   ClickEvent.LoginTextClick -> {
+//                       Intent(requireActivity(), LoginOrSignUpActivity::class.java).also {
+//                           startActivity(it)
+//                           requireActivity().finish()
+//                       }
+//                   }
                    ClickEvent.UserListClick -> {
                        openUserListFragment()
                    }
@@ -49,8 +50,8 @@ class HomeScreenFragment : Fragment() {
     private fun openUserListFragment() {
         val userListFragment = UserListFragment()
         val userListFragmentObject = requireActivity().supportFragmentManager.beginTransaction()
-        userListFragmentObject.replace(R.id.fragment_container_view,userListFragment)
-       // userListFragmentObject.addToBackStack(LoginFragment::class.java.simpleName)
+        userListFragmentObject.add(R.id.fragment_container_view_of_Home_activity,userListFragment)
+        userListFragmentObject.addToBackStack(HomeScreenFragment::class.java.simpleName)
         userListFragmentObject.commit()
 
     }
