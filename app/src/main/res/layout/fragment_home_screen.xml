@@ -7,6 +7,9 @@
         <variable
             name="vm"
             type="com.example.snehaAssignment1.viewModel.HomeViewModel" />
+        <variable
+            name="ulvm"
+            type="com.example.snehaAssignment1.viewModel.UserListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
