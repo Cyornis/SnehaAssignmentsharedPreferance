@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.snehaAssignment1.R
+import com.example.snehaAssignment1.model.UserDetails
 import com.example.snehaAssignment1.model.UserListDetails
 
-class UserListAdapter(val list: ArrayList<UserListDetails>) :
+class UserListAdapter(val list: ArrayList<UserDetails>) :
     RecyclerView.Adapter<UserListAdapter.UserListViewHolder>() {
 
     inner class UserListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,7 +30,7 @@ class UserListAdapter(val list: ArrayList<UserListDetails>) :
     override fun onBindViewHolder(holder: UserListAdapter.UserListViewHolder, position: Int) {
         holder.taskTextView.text = list[position].name
         holder.emailTextView.text = list[position].email
-        holder.phoneNumberTextView.text = list[position].phoneNumber
+        holder.phoneNumberTextView.text = list[position].phone_number
     }
 
     override fun getItemCount(): Int {

@@ -10,9 +10,13 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentUserListBinding
 import com.example.snehaAssignment1.model.ClickEvent
+import com.example.snehaAssignment1.model.UserListDetails
+import com.example.snehaAssignment1.viewModel.UserListAdapter
 import com.example.snehaAssignment1.viewModel.UserListViewModel
 
 class UserListFragment : Fragment() {
@@ -42,5 +46,10 @@ class UserListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = userListViewModel
+        val data = ArrayList<UserListDetails>()
+        val rv = binding.userListRecyclerView
+        val adapter = UserListAdapter(data)
+        rv.layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
+        rv.adapter = adapter
     }
 }

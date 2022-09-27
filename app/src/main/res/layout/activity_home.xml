@@ -12,8 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container_view_of_Home_activity"
             android:layout_width="match_parent"
@@ -24,24 +22,6 @@
             app:layout_constraintTop_toBottomOf="parent">
 
         </androidx.fragment.app.FragmentContainerView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/userListRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:padding="@dimen/_4sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
