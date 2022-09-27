@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
@@ -108,7 +108,7 @@
                         android:layout_margin="@dimen/dimen10dp"
                         android:background="@android:color/transparent"
                         android:drawableStart="@drawable/ic_baseline_phone_24"
-                        android:drawablePadding="@dimen/dimen10dp"
+                        android:drawableEnd="@dimen/dimen10dp"
                         android:hint="@string/hint_mobile_signUp"
                         android:inputType="number"
                         android:maxLines="1"
@@ -158,16 +158,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_dob"
                     app:layout_constraintVertical_bias="0.5" />
-
-                <!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="4dp"-->
-<!--                    android:layout_marginTop="48dp"-->
-<!--                    android:onClick="@{()->vm.onBackClick()}"-->
-<!--                    android:text="Back"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@id/tv_dob" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

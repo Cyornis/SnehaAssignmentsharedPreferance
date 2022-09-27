@@ -30,5 +30,11 @@
 
     <string name="home_page_title">WELCOME TO HOME ACTIVITY</string>
 
+    <string name="toolbar_title">USER LIST</string>
+
+    <string name="user_list_item_name">name</string>
+    <string name="user_list_item_email">email</string>
+    <string name="user_list_item_phone_number">phoneNumber</string>
+
 
 </resources>

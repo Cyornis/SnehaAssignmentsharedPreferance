@@ -1,18 +1,17 @@
 package com.example.snehaAssignment1.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentUserListBinding
-import com.example.snehaAssignment1.model.ClickEvent
 import com.example.snehaAssignment1.viewModel.UserListViewModel
 
 class UserListFragment : Fragment() {
@@ -35,6 +34,8 @@ class UserListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_user_list, container, false)
+      //  (activity as AppCompatActivity?)!!.getSupportActionBar()
+      //  (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
         return binding.root
     }
 
@@ -42,5 +43,6 @@ class UserListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = userListViewModel
+        userListViewModel.staticData()
     }
 }
