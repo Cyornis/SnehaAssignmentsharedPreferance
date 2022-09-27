@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Anjali kumari/AndroidStudioProjects/SnehaAssignmentsharedPreferance/app/src/main/res/layout/activity_home.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/Anjali kumari/AndroidStudioProjects/SnehaAssignmentsharedPreferance/app/src/main/res/layout/fragment_home_screen.xml" value="0.2" />
+        <entry key="..\:/Users/Anjali kumari/AndroidStudioProjects/SnehaAssignmentsharedPreferance/app/src/main/res/layout/fragment_user_list.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/Anjali kumari/AndroidStudioProjects/SnehaAssignmentsharedPreferance/app/src/main/res/layout/user_list_item.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/anjalik/AndroidStudioProjects/SnehaAssignment1/app/src/main/res/drawable/drawable_bg_gradient_btn.xml" value="0.1" />
         <entry key="..\:/Users/anjalik/AndroidStudioProjects/SnehaAssignment1/app/src/main/res/drawable/edit_text_background.xml" value="0.1125" />
         <entry key="..\:/Users/anjalik/AndroidStudioProjects/SnehaAssignment1/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
