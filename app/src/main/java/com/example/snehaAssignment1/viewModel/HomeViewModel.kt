@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import com.example.snehaAssignment1.R
+import com.example.snehaAssignment1.fragment.LoginFragment
 import com.example.snehaAssignment1.model.ClickEvent
 import com.example.snehaAssignment1.model.SignUpEventModel
 import com.example.snehaAssignment1.model.UserListEventModel
@@ -38,6 +40,7 @@ class HomeViewModel(private val app: Application) : AndroidViewModel(app) {
         defaultScope.launch {
             val signUpEventModel = SignUpEventModel(clickEvent = ClickEvent.LoginTextClick)
             signUpEvent.emit(signUpEventModel)
+
         }
     }
 

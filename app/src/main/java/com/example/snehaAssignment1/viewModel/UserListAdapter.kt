@@ -9,31 +9,28 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.snehaAssignment1.R
+import com.example.snehaAssignment1.databinding.UserListItemBinding
 import com.example.snehaAssignment1.model.UserDetails
+import com.example.snehaAssignment1.model.UserDetailsList
 
-class UserListAdapter(private val list: ArrayList<UserDetails>) :
+class UserListAdapter(private val list: ArrayList<UserDetailsList>) :
     RecyclerView.Adapter<UserListAdapter.UserListViewHolder>() {
 
-    inner class UserListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val taskTextView = itemView.findViewById<TextView>(R.id.name)
-        val emailTextView = itemView.findViewById<TextView>(R.id.email)
-        val phoneNumberTextView = itemView.findViewById<TextView>(R.id.phone_number)
-    }
+    inner class UserListViewHolder(val binding: UserListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             : UserListAdapter.UserListViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
-        val todoView = inflater.inflate(R.layout.user_list_item, parent, false)
+        val binding = UserListItemBinding.inflate(inflater,parent,false)
 
-        return UserListViewHolder(todoView)
+        return UserListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: UserListAdapter.UserListViewHolder, position: Int) {
-        holder.taskTextView.text = list[position].name
-        holder.emailTextView.text = list[position].email
-        holder.phoneNumberTextView.text = list[position].phone_number
+        holder.binding.name.text=list[position].name
+        holder.binding.email.text=list[position].email
+        holder.binding.phoneNumber.text=list[position].id.toString()
     }
 
     override fun getItemCount(): Int {

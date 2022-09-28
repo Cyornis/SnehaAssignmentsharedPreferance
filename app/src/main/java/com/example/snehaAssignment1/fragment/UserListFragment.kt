@@ -13,6 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentUserListBinding
 import com.example.snehaAssignment1.viewModel.UserListViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class UserListFragment : Fragment() {
 
@@ -43,6 +45,9 @@ class UserListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = userListViewModel
-        userListViewModel.staticData()
+        GlobalScope.launch {
+            userListViewModel.staticData()
+        }
+
     }
 }

@@ -64,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_userList"
-            app:layout_constraintVertical_bias="0.589" />
+            app:layout_constraintVertical_bias="0.586" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
