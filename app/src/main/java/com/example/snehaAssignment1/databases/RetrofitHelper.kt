@@ -29,5 +29,4 @@ object RetrofitHelper {
             .client(client)
             .build()
     }
-
 }
