@@ -1,5 +1,6 @@
 package com.example.snehaAssignment1.viewModel
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +16,9 @@ import com.example.snehaAssignment1.interfaces.ItemClickListener
 import com.example.snehaAssignment1.model.UserDetails
 import com.example.snehaAssignment1.model.UserDetailsList
 
-class UserListAdapter(private val list: ArrayList<UserDetailsList>, val itemClickListener: ItemClickListener) :
-    RecyclerView.Adapter<UserListAdapter.UserListViewHolder>() {
+class UserListAdapter(private val list: ArrayList<UserDetailsList>) : RecyclerView.Adapter<UserListAdapter.UserListViewHolder>() {
 
+    private lateinit var itemClickListener: ItemClickListener
     inner class UserListViewHolder(val binding: UserListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
@@ -35,12 +36,18 @@ class UserListAdapter(private val list: ArrayList<UserDetailsList>, val itemClic
         holder.binding.phoneNumber.text=list[position].id.toString()
 
         holder.itemView.setOnClickListener {
-            itemClickListener.onItemClickListener(position)
+            Log.d("ANJALI","itemViewClicked")
+            itemClickListener.onItemClickListener(position,list[position])
+
         }
     }
 
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun testFunct(itemClickListener: ItemClickListener){
+        this.itemClickListener=itemClickListener
     }
 }

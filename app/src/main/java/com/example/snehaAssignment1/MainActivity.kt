@@ -41,26 +41,31 @@ class MainActivity : AppCompatActivity() {
      }
     fun defaultLogin(){
 
-        val sp = getSharedPreferences("SaveLoginCredential",Context.MODE_PRIVATE)
-        val emailId = sp.getString("SavedEmailId",null)
-        val password = sp.getString("SavedPassword",null)
-
-        if (!emailId.isNullOrEmpty() && !password.isNullOrEmpty()){
-            Log.d("ANJALI","User Logged In")
-            Log.d("ANJALI",emailId.toString())
-            Log.d("ANJALI",password.toString())
-
-            Intent(this@MainActivity, HomeActivity::class.java).also {
-                startActivity(it)
-                finish()
-            }
+        Intent(this@MainActivity, HomeActivity::class.java).also {
+            startActivity(it)
+            finish()
         }
 
-        else{
-            Intent(this@MainActivity, LoginOrSignUpActivity::class.java).also {
-                startActivity(it)
-                finish()
-            }
-        }
+//        val sp = getSharedPreferences("SaveLoginCredential",Context.MODE_PRIVATE)
+//        val emailId = sp.getString("SavedEmailId",null)
+//        val password = sp.getString("SavedPassword",null)
+//
+//        if (!emailId.isNullOrEmpty() && !password.isNullOrEmpty()){
+//            Log.d("ANJALI","User Logged In")
+//            Log.d("ANJALI",emailId.toString())
+//            Log.d("ANJALI",password.toString())
+//
+//            Intent(this@MainActivity, HomeActivity::class.java).also {
+//                startActivity(it)
+//                finish()
+//            }
+//        }
+//
+//        else{
+//            Intent(this@MainActivity, LoginOrSignUpActivity::class.java).also {
+//                startActivity(it)
+//                finish()
+//            }
+//        }
     }
 }

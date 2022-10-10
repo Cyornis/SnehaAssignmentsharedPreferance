@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentUserListBinding
 import com.example.snehaAssignment1.interfaces.ItemClickListener
+import com.example.snehaAssignment1.model.UserDetailsList
 import com.example.snehaAssignment1.viewModel.UserListViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -44,26 +45,24 @@ class UserListFragment : Fragment(),ItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = userListViewModel
+        userListViewModel.testFunction(this)
+
         GlobalScope.launch {
             userListViewModel.staticData()
             activity?.runOnUiThread(Runnable{
                 Log.d("ANJALI","fragments")
                 userListViewModel.adapter.notifyDataSetChanged()
-                onItemClickListener(position = 1)
+
             })
         }
 
     }
 
-      override  fun onItemClickListener(position: Int) {
+      override  fun onItemClickListener(position: Int,userDetails:UserDetailsList) {
             //openUserDetailsFragment
             val userDetailsFragment = UserDetailsFragment()
-            val userDetailsFragmentObject =
-                requireActivity().supportFragmentManager.beginTransaction()
-            userDetailsFragmentObject.add(
-                R.id.fragment_container_view_of_Home_activity,
-                userDetailsFragment
-            )
+            val userDetailsFragmentObject = requireActivity().supportFragmentManager.beginTransaction()
+            userDetailsFragmentObject.add(R.id.fragment_container_view_of_Home_activity, userDetailsFragment)
             userDetailsFragmentObject.addToBackStack(UserListFragment::class.java.simpleName)
             userDetailsFragmentObject.commit()
         }

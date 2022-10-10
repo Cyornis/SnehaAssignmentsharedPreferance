@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
 
-class UserListViewModel(val app: Application,val itemClickListener: ItemClickListener ):AndroidViewModel(app) {
+class UserListViewModel(val app: Application ):AndroidViewModel(app) {
 
     private val defaultScope = CoroutineScope(Dispatchers.Default)
     private val userListEvent = MutableSharedFlow<UserListEventModel>()
@@ -23,7 +23,7 @@ class UserListViewModel(val app: Application,val itemClickListener: ItemClickLis
     val userListRepo = UserListRepo(app)
     var data =ArrayList<UserDetailsList>()
    // val click = itemClickListener.onItemClickListener(1)
-    val adapter = UserListAdapter(data,itemClickListener)
+    val adapter = UserListAdapter(data)
 
 
     //private val userDetailsList = UserDetailsList(1, "Anjali","abc@gmail.com")
@@ -34,12 +34,11 @@ class UserListViewModel(val app: Application,val itemClickListener: ItemClickLis
         data.addAll(response.body()!!)
         Log.d("ANJALI","api_call")
 
-//      for (i in 0 until 5){
-//          val userDetails = UserDetails(i,"Anjali$i","abc@gmail.com","123abcd@","123467891","12-10-1897")
-//          data.add(userDetails)
-//      }
-
      //   adapter.notifyDataSetChanged()
+    }
+
+    fun testFunction( itemClickListener: ItemClickListener){
+        adapter.testFunct(itemClickListener)
     }
 
 }

@@ -11,6 +11,13 @@ data class UserDetailsList(
     var name:String,
 
     @SerializedName("email")
-    var email:String
+    var email:String,
+
+    @SerializedName("phone")
+    var phone:String,
+
+    @SerializedName("website")
+    var website:String
+
 
 ):Serializable

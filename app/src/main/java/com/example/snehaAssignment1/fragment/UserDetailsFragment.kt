@@ -27,7 +27,9 @@ class UserDetailsFragment : Fragment() {
         return binding.root
     }
 
-     fun onViewCreated(){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+         super.onViewCreated(view, savedInstanceState)
+
         binding.vm = userDetailsViewModel
     }
 }
