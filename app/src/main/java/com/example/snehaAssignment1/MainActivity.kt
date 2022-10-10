@@ -28,11 +28,6 @@ class MainActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) { }
 
             override fun onFinish() {
-                ///login or signUp fragment open or home activity
-                //if shared preferance has value of email and password both
-                //then intent to open home screen activity
-                //else
-                //intent to open loginOrSignUp activity
 
                      defaultLogin()
                 }
@@ -45,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
      }
     fun defaultLogin(){
+
         val sp = getSharedPreferences("SaveLoginCredential",Context.MODE_PRIVATE)
         val emailId = sp.getString("SavedEmailId",null)
         val password = sp.getString("SavedPassword",null)

@@ -10,10 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.UserListItemBinding
+import com.example.snehaAssignment1.fragment.UserDetailsFragment
+import com.example.snehaAssignment1.interfaces.ItemClickListener
 import com.example.snehaAssignment1.model.UserDetails
 import com.example.snehaAssignment1.model.UserDetailsList
 
-class UserListAdapter(private val list: ArrayList<UserDetailsList>) :
+class UserListAdapter(private val list: ArrayList<UserDetailsList>, val itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<UserListAdapter.UserListViewHolder>() {
 
     inner class UserListViewHolder(val binding: UserListItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -31,7 +33,12 @@ class UserListAdapter(private val list: ArrayList<UserDetailsList>) :
         holder.binding.name.text=list[position].name
         holder.binding.email.text=list[position].email
         holder.binding.phoneNumber.text=list[position].id.toString()
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClickListener(position)
+        }
     }
+
 
     override fun getItemCount(): Int {
         return list.size

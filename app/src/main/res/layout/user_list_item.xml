@@ -10,8 +10,10 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/itemViewCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         app:cardBackgroundColor="@color/teal_700"
         app:cardCornerRadius="@dimen/dimen10dp">
 

@@ -14,7 +14,7 @@ interface ApiInterface {
     suspend fun getDetails(): Response<UserDetailsList>
 
     @GET("users")
-    suspend fun getData():Response<UserDetailsResponse>
+    suspend fun getData():Response<ArrayList<UserDetailsList>>
 
     @POST("users")
     fun postData(@Body userDetailsList: UserDetailsList): Call<UserDetailsList>

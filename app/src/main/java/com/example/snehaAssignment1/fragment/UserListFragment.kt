@@ -1,6 +1,7 @@
 package com.example.snehaAssignment1.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentUserListBinding
+import com.example.snehaAssignment1.interfaces.ItemClickListener
 import com.example.snehaAssignment1.viewModel.UserListViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class UserListFragment : Fragment() {
+class UserListFragment : Fragment(),ItemClickListener {
 
     private val userListViewModel : UserListViewModel by viewModels()
     private lateinit var binding  : FragmentUserListBinding
@@ -25,7 +27,6 @@ class UserListFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
            userListViewModel.userListFlow.collect{
                Toast.makeText(requireContext(),"Anjali",Toast.LENGTH_SHORT).show()
-
            }
         }
     }
@@ -36,8 +37,6 @@ class UserListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_user_list, container, false)
-      //  (activity as AppCompatActivity?)!!.getSupportActionBar()
-      //  (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
         return binding.root
     }
 
@@ -47,7 +46,25 @@ class UserListFragment : Fragment() {
         binding.vm = userListViewModel
         GlobalScope.launch {
             userListViewModel.staticData()
+            activity?.runOnUiThread(Runnable{
+                Log.d("ANJALI","fragments")
+                userListViewModel.adapter.notifyDataSetChanged()
+                onItemClickListener(position = 1)
+            })
         }
 
     }
+
+      override  fun onItemClickListener(position: Int) {
+            //openUserDetailsFragment
+            val userDetailsFragment = UserDetailsFragment()
+            val userDetailsFragmentObject =
+                requireActivity().supportFragmentManager.beginTransaction()
+            userDetailsFragmentObject.add(
+                R.id.fragment_container_view_of_Home_activity,
+                userDetailsFragment
+            )
+            userDetailsFragmentObject.addToBackStack(UserListFragment::class.java.simpleName)
+            userDetailsFragmentObject.commit()
+        }
 }

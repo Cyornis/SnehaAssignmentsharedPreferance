@@ -7,9 +7,6 @@
         <variable
             name="vm"
             type="com.example.snehaAssignment1.viewModel.HomeViewModel" />
-<!--        <variable-->
-<!--            name="ulvm"-->
-<!--            type="com.example.snehaAssignment1.viewModel.UserListViewModel" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,17 +14,6 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         tools:context=".fragment.HomeScreenFragment">
-
-
-        <!--THREE BUTTONS
-                     1 btn->onClick on userListBtn->UserListFragment open ->show only name,email,phone number
-                                                        |
-                                                        |these two btns are insie the UserDetailsFragment
-                                                        |
-                      1 btn->onClick on usertoDosBtn->UserToDosFragment open -> title and background colour for completed- true- green and completed - false -red
-                      2 btn-> onClick On userPostbtn-> UserPostFragment open ->  title and body (description)
-
-         -->
 
         <TextView
             android:id="@+id/homeActivityTitle"

@@ -31,6 +31,7 @@
     <string name="home_page_title">WELCOME TO HOME ACTIVITY</string>
 
     <string name="toolbar_title">USER LIST</string>
+    <string name="toolbar_title_of_UserDetailsFragment">USER DETAILS FRAGMENT</string>
 
     <string name="user_list_item_name">name</string>
     <string name="user_list_item_email">email</string>
