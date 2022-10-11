@@ -7,5 +7,7 @@ enum class ClickEvent {
     LoginClick,
     DoBTextClick,
     UserListClick,
+    UserToDoClick,
+    UserPostClick,
     Nothing
 }
