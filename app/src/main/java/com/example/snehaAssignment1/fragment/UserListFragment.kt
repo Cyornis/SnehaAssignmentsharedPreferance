@@ -60,7 +60,10 @@ class UserListFragment : Fragment(),ItemClickListener {
 
       override  fun onItemClickListener(position: Int,userDetails:UserDetailsList) {
             //openUserDetailsFragment
+            val bundle = Bundle()
+            bundle.putSerializable("UserData",userDetails)
             val userDetailsFragment = UserDetailsFragment()
+            userDetailsFragment.arguments = bundle
             val userDetailsFragmentObject = requireActivity().supportFragmentManager.beginTransaction()
             userDetailsFragmentObject.add(R.id.fragment_container_view_of_Home_activity, userDetailsFragment)
             userDetailsFragmentObject.addToBackStack(UserListFragment::class.java.simpleName)

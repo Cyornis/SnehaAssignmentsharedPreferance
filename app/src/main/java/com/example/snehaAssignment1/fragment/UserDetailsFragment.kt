@@ -14,6 +14,7 @@ import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentUserDetailsBinding
 import com.example.snehaAssignment1.interfaces.ItemClickListener
 import com.example.snehaAssignment1.model.ClickEvent
+import com.example.snehaAssignment1.model.UserDetailsList
 import com.example.snehaAssignment1.viewModel.UserDetailsViewModel
 import com.example.snehaAssignment1.viewModel.UserListViewModel
 import kotlinx.coroutines.GlobalScope
@@ -82,7 +83,11 @@ class UserDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = userDetailsViewModel
-
-
+        val data:UserDetailsList = arguments?.getSerializable("UserData") as UserDetailsList
+        binding.nameComingFromUserListFragment.text = data.name
+        binding.idComingFromUserListFragment.text = data.id.toString()
+        binding.phoneComingFromUserListFragment.text = data.phone
+        binding.emailComingFromUserListFragment.text = data.email
+        binding.websiteComingFromUserListFragment.text = data.website
     }
 }

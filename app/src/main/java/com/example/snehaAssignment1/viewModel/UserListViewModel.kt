@@ -22,9 +22,7 @@ class UserListViewModel(val app: Application ):AndroidViewModel(app) {
     val userListFlow = userListEvent.asSharedFlow()
     val userListRepo = UserListRepo(app)
     var data =ArrayList<UserDetailsList>()
-   // val click = itemClickListener.onItemClickListener(1)
     val adapter = UserListAdapter(data)
-
 
     //private val userDetailsList = UserDetailsList(1, "Anjali","abc@gmail.com")
 
