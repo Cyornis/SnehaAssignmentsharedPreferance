@@ -1,6 +1,7 @@
 package com.example.snehaAssignment1.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.snehaAssignment1.R
 import com.example.snehaAssignment1.databinding.FragmentUserToDoBinding
+import com.example.snehaAssignment1.model.UserToDo
 import com.example.snehaAssignment1.viewModel.UserToDoViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class UserToDoFragment : Fragment() {
 
-    lateinit var  binding : FragmentUserToDoBinding
+     lateinit var  binding : FragmentUserToDoBinding
      private val userToDoViewModel : UserToDoViewModel by viewModels()
+   //  private val user= UserToDo(userId = 1, id = 1, title = "sdfghjk",completed="true")
+    val user = ArrayList<UserToDo>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,5 +35,16 @@ class UserToDoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = userToDoViewModel
+
+        GlobalScope.launch {
+            userToDoViewModel.staticData()
+            Log.d("Anjali","GetUserToDoDetails")
+        }
+
+//        binding.UserID.text =user.userId.toString()
+//        binding.ID.text = user.id.toString()
+//        binding.title.text = user.title
+//        binding.completed.text = user.completed
+
     }
 }
