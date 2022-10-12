@@ -19,8 +19,7 @@ class UserToDoFragment : Fragment() {
 
      lateinit var  binding : FragmentUserToDoBinding
      private val userToDoViewModel : UserToDoViewModel by viewModels()
-   //  private val user= UserToDo(userId = 1, id = 1, title = "sdfghjk",completed="true")
-    val user = ArrayList<UserToDo>()
+     //  private val user= UserToDo(userId = 1, id = 1, title = "sdfghjk",completed="true")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +38,14 @@ class UserToDoFragment : Fragment() {
         GlobalScope.launch {
             userToDoViewModel.staticData()
             Log.d("Anjali","GetUserToDoDetails")
+
+            activity?.runOnUiThread(Runnable{
+                userToDoViewModel.adapter.notifyDataSetChanged()
+//                binding.UserID.text = userToDoViewModel.dataFromUserToDoDataClass[0].userId.toString()
+//                binding.ID.text = userToDoViewModel.dataFromUserToDoDataClass[0].id.toString()
+//                binding.title.text = userToDoViewModel.dataFromUserToDoDataClass[0].title
+//                binding.completed.text = userToDoViewModel.dataFromUserToDoDataClass[0].completed
+            })
         }
-
-//        binding.UserID.text =user.userId.toString()
-//        binding.ID.text = user.id.toString()
-//        binding.title.text = user.title
-//        binding.completed.text = user.completed
-
     }
 }

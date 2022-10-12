@@ -9,7 +9,8 @@ import com.example.snehaAssignment1.model.UserToDo
 
 class UserToDoViewModel(val app:Application):AndroidViewModel(app) {
 
-    private val dataFromUserToDoDataClass = ArrayList<UserToDo>()
+     val dataFromUserToDoDataClass = ArrayList<UserToDo>()
+     val adapter = UserToDoAdapter(dataFromUserToDoDataClass)
 
     suspend fun staticData(){
         val apiInterface= RetrofitHelper.getInstance().create(ApiInterface::class.java)
